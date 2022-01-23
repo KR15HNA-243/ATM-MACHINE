@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(){
+    
+  char str[50];
+  int withdraw, deposit, bal, choice, left;
+  
+  printf ("Enter your Name:");
+  scanf ("%s", str);
+  
+  FILE *balance;
+  balance=fopen("C.txt","r");
+  
+  while(!feof(balance)){
+    fscanf(balance,"%d",&bal);
+}
+   
+   
+  left = bal;
+  label:
+  bal = left;
+  printf("\nWelcome to XYZ bank %s,your current balance is: %d\n",str,left);
+  printf("\nWhat would you like to do now?\n");
+  printf ("\n1. Withdraw Money\n2. Deposit Money\n3. Check Balance\n4. Exit\n\n");
+  printf ("Enter your choice:");
+  scanf ("%d", &choice);
+  switch (choice){
+    
+    case 1:
+      printf ("\nEnter amount to Withdraw:");
+      scanf ("%d", &withdraw);
+      if (withdraw > bal)
+	{
+	  printf ("\nNot enough money\n");
+	  break;
+	}
+      else
+	{
+	  left = bal - withdraw;
+	  printf ("\nAn amount of %d has been successfully withdrawn from your account.\n", withdraw);
+	  goto label;
+	}
+
+    case 2:
+	printf ("\nEnter amount to Deposit:");
+	scanf ("%d", &deposit);
+	left = bal + deposit;
+	printf("\nAn amount of %d has been successfully added to your account.\n",deposit);
+	goto label;
+      
+    case 3:
+	printf ("\nYour balance is: %d\n", bal);
+	goto label;
+      
+    case 4:
+	printf ("\nGoodbye.\nThank you for using XYZ Bank.");
+	break;
+      
+    }
+  return 0;
+}
